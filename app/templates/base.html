@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>CapstoneProject</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		{% assets 'css' %}
+		<link rel="stylesheet" href="{{ ASSET_URL }}">
+		{% endassets %}
+		<base href="/">
+	</head>
+
+	<body>
+		{% block body %}
+		<nav id="nav">
+			<div>
+				<a class="logotype" href="/">
+					<img class="logomark" src="./static/img/logo.png">
+					<span class="logotext">CapstoneProject</span>
+				</a>
+			</div>
+
+			<div class="nav-items">
+				{% if not hide_search %}
+				<input class="search" placeholder="search game...">
+				{% endif %}
+				<a>link 1</a>
+				<a>link 2</a>
+				<a>link 3</a>
+			</div>
+		</nav>
+
+		<div id="content">
+		{% block content %}
+		{% endblock %}
+		</div>
+
+		<footer id="footer">
+			EPITECH Brussels © 2022
+		</footer>
+		{% endblock %}
+	</body>
+</html>

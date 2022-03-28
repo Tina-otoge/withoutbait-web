@@ -1,0 +1,31 @@
+#nav {
+	height: 64px;
+	background: rgba(0, 0, 0, .5);
+	padding: .5em 1em;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#nav .logotype {
+	font-size: 30px;
+	color: inherit;
+	text-decoration: unset;
+}
+
+#nav .logomark {
+	height: 1em;
+	vertical-align: middle;
+}
+
+#nav .nav-items > * {
+	margin: 0 .75em;
+}
+
+#nav .search {
+	background: #353535;
+	border: none;
+	border-bottom: 1px solid gray;
+	padding: .5em 1em;
+	color: inherit;
+}

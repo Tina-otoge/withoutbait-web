@@ -1,0 +1,10 @@
+#content {
+	min-height: calc(100vh - 6em);
+}
+
+#footer {
+	background: rgb(40, 40, 40);
+	margin-top: 2em;
+	padding: 2em 3em;
+	text-align: center;
+}

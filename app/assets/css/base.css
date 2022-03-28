@@ -1,0 +1,51 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	height: 100%;
+	background: rgb(21,18,73);
+	background: linear-gradient(0deg, rgba(21,18,73,1) 0%, rgba(32,32,32,1) 100%) fixed;
+	color: white;
+	font-family: 'Fredoka', sans-serif;
+}
+
+a {
+	cursor: pointer;
+}
+
+a:visited {
+	color: unset;
+}
+
+.page {
+	max-width: 900px;
+	padding: 0 2em;
+	margin: auto;
+}
+
+[title] {
+	text-decoration: underline dashed;
+}
+
+.material-icons {
+	position: relative;
+	top: .2em;
+	margin: 0 .2em;
+}
+
+button, .button {
+	display: inline-block;
+	padding: .2em 1em;
+	background: darkblue;
+	transition: .4s;
+}
+
+button:hover, .button:hover {
+	background: darkcyan;
+}

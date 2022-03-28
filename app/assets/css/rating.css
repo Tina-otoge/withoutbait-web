@@ -1,0 +1,27 @@
+.rating {
+	background: gray;
+}
+
+.rating.good {
+	background: green;
+}
+
+.rating.bad {
+	background: red;
+}
+
+.rating.meh {
+	background: orange;
+}
+
+.rating-tags .tag.good .icon {
+	color: green;
+}
+
+.rating-tags .tag.meh .icon {
+	color: orange;
+}
+
+.rating-tags .tag.bad .icon {
+	color: red;
+}

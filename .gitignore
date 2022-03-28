@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+
+/venv/
+/.venv/
+
+/app/static/bundle.*
+.webassets-cache/
