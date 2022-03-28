@@ -1,0 +1,20 @@
+- expansions:
+  description: "Additional content such as new chapters can be bought"
+
+- minor-items:
+  description: "Simple content such as new items or characters can be bought"
+
+- cosmetics:
+  description: "Items that only changes the appearance can be bought"
+
+- skip:
+  description: "You can pay to obtain things that can be obtained freely but faster"
+
+- mandatory-subscription:
+  description: "You need a subscription to play the game"
+
+- optional-subscription:
+  description: "An additional subscription gives you more content in the game"
+
+- lootbox:
+  description: "You can pay to obtain items at random"

@@ -21,3 +21,4 @@ from .blueprint import Blueprint
 from . import bundles
 
 register_blueprints()
+bundles.main()
