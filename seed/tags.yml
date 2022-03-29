@@ -1,0 +1,24 @@
+Expansions:
+  description: "Additional content such as new chapters can be bought"
+
+Minor items:
+  description: "Simple content such as new items or characters can be bought"
+
+Cosmetics:
+  description: "Items that only changes the appearance can be bought"
+
+Skip:
+  description: "You can pay to obtain things that can be obtained freely but faster"
+
+Mandatory subscription:
+  description: "You need a subscription to play the game"
+
+Optional subscription:
+  description: "An additional subscription gives you more content in the game"
+
+Lootbox:
+  description: "You can pay to obtain items at random"
+
+3rd-party content:
+  description: "Unofficial services and contents may have their own business plan"
+  type: warn

@@ -1,0 +1,32 @@
+# Format:
+# <short name>: <long name>
+# If <long name> is empty, it will be the same as <short name>
+
+# General
+Windows:
+Mac:
+Linux:
+Android:
+Android TV:
+iOS:
+iPadOS:
+tvOS:
+Arcade:
+
+# Sony
+PS3: "PlayStation 3"
+PS4: "PlayStation 4"
+PS5: "PlayStation 5"
+PSP: "PlayStation Portable"
+Vita: "PlayStation Vita"
+
+# Nintendo
+Wii:
+Wii U:
+3DS: "Nintendo 3DS"
+Switch: "Nintendo Switch"
+
+# Xbox
+Xbox 360:
+Xbox One:
+Xbox Series:

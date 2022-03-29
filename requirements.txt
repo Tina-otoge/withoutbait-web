@@ -1,4 +1,8 @@
 flask
 flask-assets
+
 sqlalchemy
+sqlalchemy_utils
 alembic
+
+pyyaml

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>CapstoneProject</title>
+		<title>{{ config.NAME }}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,7 @@
 			<div>
 				<a class="logotype" href="/">
 					<img class="logomark" src="./static/img/logo.png">
-					<span class="logotext">CapstoneProject</span>
+					<span class="logotext">{{ config.NAME }}</span>
 				</a>
 			</div>
 
@@ -28,9 +28,8 @@
 				{% if not hide_search %}
 				<input class="search" placeholder="search game...">
 				{% endif %}
-				<a>link 1</a>
-				<a>link 2</a>
-				<a>link 3</a>
+				<a href="/latest">Latest</a>
+				<a href="/popular">Popular</a>
 			</div>
 		</nav>
 

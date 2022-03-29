@@ -10,4 +10,7 @@ def register(name, iterable=None):
     bundle = Bundle(*(str(x) for x in iterable), output=f'bundle.{name}')
     assets.register(name, bundle)
 
-register('css')
+
+def main():
+    """Register every assets bundles"""
+    register('css')
