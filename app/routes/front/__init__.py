@@ -3,4 +3,4 @@ from app import Blueprint
 
 bp = Blueprint(__name__)
 
-from . import game, index, login, user
+from . import errors, game, index, login, user
