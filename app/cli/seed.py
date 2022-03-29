@@ -48,6 +48,7 @@ def seed_tags(data: dict):
             type = type.upper()
         values = {
             'slug': Tag.slugify(name),
+            'name': name,
             'description': meta.get('description'),
             'type': type,
         }

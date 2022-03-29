@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page">
+	<p class="notice">
+		Please check if your game is already listed on <a href="https://igdb.com">IGDB</a> first.
+		If so, use the game title from IGDB, and use the part of the URL after "/games/" for the slug.
+	</p>
+	{% include "_form.html" %}
+</div>
+{% endblock %}

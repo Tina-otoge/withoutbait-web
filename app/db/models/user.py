@@ -15,5 +15,13 @@ class User(db.Base, db.IdMixin, db.CreatedMixin, UserMixin):
         kwargs['password'] = werkzeug.security.generate_password_hash(kwargs['password'])
         super().__init__(**kwargs)
 
+    def __str__(self):
+        return self.username
+
     def check_password(self, s: str):
         return werkzeug.security.check_password_hash(self.password, s)
+
+    @property
+    def avatar_url(self):
+        # TODO
+        return 'https://osu.ppy.sh/images/layout/avatar-guest.png'

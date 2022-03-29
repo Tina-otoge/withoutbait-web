@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% include "_form.html" %}
+<div class="page">
+	<h1>Login</h1>
+	{% include "_form.html" %}
+	<p>Do not have an account yet? <a href="/register">You can register now</a>.</p>
+</div>
 {% endblock %}

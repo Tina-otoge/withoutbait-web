@@ -1,0 +1,8 @@
+<div class="rating-tags">
+	{% for tag in entry.tags %}
+	<div class="tag {{ tag.rating }}" title="{{ tag.description or '' }}">
+		<span class="icon material-icons">{{ tag.icon }}</span>
+		{{ tag }}
+	</div>
+	{% endfor %}
+</div>

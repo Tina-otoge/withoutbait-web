@@ -1,82 +1,44 @@
 {% extends "base.html" %}
 
-{% set entries = [
-	{
-		"title": "Minecraft",
-		"subtitle": "Java Edition",
-		"art": "https://images.igdb.com/igdb/image/upload/t_cover_big/co49x5.png",
-		"rating": "good",
-	},
-	{
-		"title": "Rocket League",
-		"art": "https://images.igdb.com/igdb/image/upload/t_cover_big/co4cfe.png",
-		"rating": "meh",
-	},
-] %}
-
 {% set hide_search = true %}
 
 {% block content %}
 <div id="main-search" class="page">
 	<p>Search games</p>
 	<input placeholder="type a game name here...">
+	<a class="button" id="main-add" href="/add">Add a game</a>
 </div>
 
 <p style="text-align: center">Browse games</p>
 <p class="page">Sort | Filter</p>
 <div id="game-entries" class="page">
 	{% for entry in entries %}
+	{% set url = '/games/' + entry.slug %}
 	<div class="entry">
 
 		<div class="rating {{ entry.rating }}">{{ entry.rating }}</div>
 
-		<img class="art" src="{{ entry.art }}">
+		<img class="art" src="{{ entry.cover_url }}">
 
 		<div class="side">
 
 			<div class="content">
-				<a class="title" href="./game.html">
-					{{ entry.title }}
+				<a class="title" href="{{ url }}">
+					{{ entry.name }}
 					<div class="subtitle">
-						{{ entry.subtitle }}
+						{{ entry.subtitle or '' }}
 					</div>
 				</a>
 
-				<div class="rating-tags">
-					{% if entry.title == "Minecraft" %}
-					<div class="tag good">
-						<span class="icon material-icons">check_circle</span>
-						One-time purchase
-					</div>
-					<div class="tag meh" title="Unofficial services may require payment in any form">
-						<span class="icon material-icons">warning</span>
-						3rd party content
-					</div>
-					{% elif entry.title == "Rocket League" %}
-					<div class="tag good">
-						<span class="icon material-icons">check_circle</span>
-						Free-to-play
-					</div>
-					<div class="tag bad">
-						<span class="icon material-icons">cancel</span>
-						Premium currency
-					</div>
-					<div class="tag bad">
-						<span class="icon material-icons">cancel</span>
-						Lootboxes
-					</div>
-					<div class="tag bad">
-						<span class="icon material-icons">cancel</span>
-						Seasonal pass
-					</div>
-					{% endif %}
-				</div>
+				{% include "_entry_tags.html" %}
 
 			</div>
 
 			<div>
-				<a class="button" href="./game.html">See details</a>
-				<a class="button">Official website</a>
+				<a class="button" href="/games/{{ entry.slug }}">See details</a>
+				{% if entry.official_url %}
+				<a class="button" href="{{ entry.official_url }}">Official website</a>
+				{% endif %}
 			</div>
 		</div>
 	</div>

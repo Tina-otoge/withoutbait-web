@@ -1,0 +1,22 @@
+input, textarea {
+	background: #353535;
+	border: none;
+	border-bottom: 1px solid gray;
+	padding: .5em 1em;
+	color: inherit;
+}
+
+form {
+	margin: 1em 0;
+}
+
+.form-input {
+	margin-bottom: 1em;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+}
+
+.form-input input[type="text"], .form-input textarea {
+	min-width: 60%;
+}

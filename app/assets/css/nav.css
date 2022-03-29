@@ -1,7 +1,12 @@
 #nav {
-	height: 64px;
 	background: rgba(0, 0, 0, .5);
+}
+
+#nav .inner {
+	height: 64px;
 	padding: .5em 1em;
+	max-width: 1200px;
+	margin: auto;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -25,12 +30,4 @@
 #nav a {
 	color: inherit;
 	text-decoration: none;
-}
-
-#nav .search {
-	background: #353535;
-	border: none;
-	border-bottom: 1px solid gray;
-	padding: .5em 1em;
-	color: inherit;
 }

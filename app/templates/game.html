@@ -3,31 +3,24 @@
 {% block content %}
 <div class="page" id="game-entry">
 	<h1 class="title">
-		{{ entry.title }}
+		{{ entry.name }}
 		<small class="subtitle">{{ entry.subtitle }}</small>
 	</h1>
 
 	<div class="content">
-		<img class="art" src="{{ entry.art }}">
+		<img class="art" src="{{ entry.cover_url }}">
 
 		<div class="side">
 			<div>
 				<div class="rating {{ entry.rating }}">{{ entry.rating }}</div>
 
-				<div class="rating-tags">
-					<div class="tag good">
-						<span class="icon material-icons">check_circle</span>
-						One-time purchase
-					</div>
-					<div class="tag meh" title="Unofficial services may require payment in any form">
-						<span class="icon material-icons">warning</span>
-						3rd party content
-					</div>
-				</div>
+				{% include "_entry_tags.html" %}
 			</div>
 
 			<div>
-				<a class="button">Official website</a>
+				{% if entry.official_url %}
+				<a class="button" href="{{ entry.official_url }}">Official website</a>
+				{% endif %}
 			</div>
 		</div>
 	</div>
@@ -35,6 +28,7 @@
 
 <div class="page" id="reviews">
 	<p>Reviews</p>
+	<p><a class="button" href="{{ '/games/' + entry.slug + '/review' }}">Add review</a></p>
 
 	{% for review in entry.reviews %}
 	<div class="review">
@@ -50,11 +44,9 @@
 			<div class="comment">
 				{{ review.comment }}
 			</div>
-			<div class="rating-tags">
-				{% for tag in review.tags %}
-				<div class="tag">{{ tag }}</div>
-				{% endfor %}
-			</div>
+			{% with entry = review %}
+			{% include "_entry_tags.html" %}
+			{% endwith %}
 		</div>
 	</div>
 	{% endfor %}

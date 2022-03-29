@@ -1,9 +1,12 @@
 <form method="post">
 	{{ form.hidden_tag() }}
 	{% for field in form if field.widget.input_type != 'hidden' %}
-	<div data-field-name="{{ field.name }}" data-field-required="{{ field.flags.__contains__('required') }}">
-		{{ field.label }}<br>
-		{{ field }}<br>
+	<div class="form-input" data-field-name="{{ field.name }}" data-field-required="{{ field.flags.__contains__('required') }}">
+		{{ field.label }}
+		{% if field.description %}
+		<p>{{ field.description }}</p>
+		{% endif %}
+		{{ field }}
 		{% for error in field.errors %}
 		<span style="color: red;">[{{ error }}]</span>
 		{% endfor %}

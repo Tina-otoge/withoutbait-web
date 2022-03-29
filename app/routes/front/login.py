@@ -47,11 +47,16 @@ def register():
 
     user = db.session.query(User).filter_by(username=form.username.data).first()
     if user:
-        print(user)
         raise Exception(f'User {user} already exists')
     user = User(username=form.username.data, password=form.password.data)
     db.session.add(user)
     db.session.commit()
     flask_login.login_user(user, remember=True)
 
+    return flask.redirect('/')
+
+
+@bp.route('/logout')
+def logout():
+    flask_login.logout_user()
     return flask.redirect('/')

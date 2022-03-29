@@ -15,12 +15,14 @@ body {
 	font-family: 'Fredoka', sans-serif;
 }
 
-a {
+a, a:visited {
 	cursor: pointer;
+	color: #90ee02;
 }
 
-a:visited {
-	color: unset;
+a:hover {
+	color: #61d800;
+	text-decoration: underline;
 }
 
 .page {
@@ -39,11 +41,13 @@ a:visited {
 	margin: 0 .2em;
 }
 
-button, .button {
+button, .button, .button:hover, .button:visited {
 	display: inline-block;
 	padding: .2em 1em;
 	background: darkblue;
 	transition: .4s;
+	color: white;
+	text-decoration: none;
 }
 
 button:hover, .button:hover {

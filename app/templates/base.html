@@ -17,19 +17,23 @@
 	<body>
 		{% block body %}
 		<nav id="nav">
-			<div>
-				<a class="logotype" href="/">
-					<img class="logomark" src="./static/img/logo.png">
-					<span class="logotext">{{ config.NAME }}</span>
-				</a>
-			</div>
+			<div class="inner">
+				<div>
+					<a class="logotype" href="/">
+						<!-- <img class="logomark" src="./static/img/logo.png"> -->
+						<i class="material-icons">phishing</i>
+						<span class="logotext">{{ config.NAME }}</span>
+					</a>
+				</div>
 
-			<div class="nav-items">
-				{% if not hide_search %}
-				<input class="search" placeholder="search game...">
-				{% endif %}
-				<a href="/latest">Latest</a>
-				<a href="/popular">Popular</a>
+				<div class="nav-items">
+					{% if not hide_search %}
+					<input class="search" placeholder="search game...">
+					{% endif %}
+					<a href="/latest">Latest</a>
+					<a href="/popular">Popular</a>
+					<a href="/account">Account</a>
+				</div>
 			</div>
 		</nav>
 
