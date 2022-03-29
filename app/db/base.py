@@ -27,6 +27,8 @@ def pluralize(s: str) -> str:
 
 
 class Base:
+    REPR_KEYS = set()
+
     @orm.declared_attr
     def __tablename__(cls: Type):
         """
@@ -54,5 +56,8 @@ class Base:
             pk = f"(transient {id(self)})"
         else:
             pk = ", ".join(str(value) for value in identity)
+
+        if self.REPR_KEYS:
+            pk += ' ' + ', '.join(f'{x}={getattr(self, x)}' for x in self.REPR_KEYS)
 
         return f"<{type(self).__name__} {pk}>"
