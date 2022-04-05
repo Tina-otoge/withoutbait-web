@@ -17,6 +17,10 @@
 	margin-top: 1em;
 }
 
+#main-submit {
+	display: none;
+}
+
 #game-entries {
 	display: flex;
 	flex-direction: column;
