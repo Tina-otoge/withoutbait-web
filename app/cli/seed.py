@@ -3,7 +3,7 @@ import logging
 from pathlib import Path
 import yaml
 
-from app.db.models import Platform, Tag
+from app.db.models import Platform, Tag, Genre
 from app import app, db
 from . import bp
 
@@ -14,6 +14,7 @@ def seed(files):
     handlers = {
         'tags': seed_tags,
         'platforms': seed_platforms,
+        'genres': seed_genres,
     }
     if not files:
         seed_dir = Path('./seed/')
@@ -72,4 +73,19 @@ def seed_platforms(data: dict):
             'name': long_name,
         }
         db.upcreate(Platform, values, match='slug')
+        db.session.commit()
+
+
+def seed_genres(data: dict):
+    for short_name, long_name in data.items():
+        slug = Genre.slugify(short_name)
+        if not long_name:
+            long_name = short_name
+            short_name = None
+        values = {
+            'slug': slug,
+            '_short': short_name,
+            'name': long_name,
+        }
+        db.upcreate(Genre, values, match='slug')
         db.session.commit()
