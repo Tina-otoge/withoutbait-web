@@ -15,6 +15,16 @@
 				<div class="rating {{ entry.rating }}">{{ entry.rating }}</div>
 
 				{% include "_entry_tags.html" %}
+
+				<div class="genres">
+					<h3>Genres</h3>
+					{{ entry.genres|join(', ') }}
+				</div>
+
+				<div class="platforms">
+					<h3>Platforms</h3>
+					{{ entry.platforms|join(', ') }}
+				</div>
 			</div>
 
 			<div>

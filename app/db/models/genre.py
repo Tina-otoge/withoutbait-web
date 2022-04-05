@@ -10,3 +10,6 @@ class Genre(db.Base, db.IdMixin, db.SlugMixin):
     @property
     def short(self):
         return self._short or self.name
+
+    def __str__(self):
+        return self.name

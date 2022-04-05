@@ -14,6 +14,8 @@ class Game(db.Base, db.IdMixin, db.SlugMixin, db.TimedMixin):
     views = sa.Column(sa.Integer, **db.default_value(0))
 
     tags = orm.relationship('Tag', secondary='game_tags', backref='games')
+    genres = orm.relationship('Genre', secondary='game_genres', backref='games')
+    platforms = orm.relationship('Platform', secondary='game_platforms', backref='games')
 
     @property
     def rating(self):
