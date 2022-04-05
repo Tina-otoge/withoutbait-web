@@ -11,6 +11,7 @@ class Game(db.Base, db.IdMixin, db.SlugMixin, db.TimedMixin):
     official_url =  sa.Column(sa.String)
     cover_url = sa.Column(sa.String)
     score = sa.Column(sa.Integer)
+    views = sa.Column(sa.Integer, **db.default_value(0))
 
     tags = orm.relationship('Tag', secondary='game_tags', backref='games')
 

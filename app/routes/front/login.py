@@ -1,7 +1,7 @@
 import flask
 import flask_login
 from flask_wtf import FlaskForm
-from wtforms import StringField
+from wtforms import StringField, PasswordField
 from wtforms.validators import DataRequired
 
 from app import db, login_manager
@@ -18,7 +18,7 @@ def load_user(user_id):
 def login():
     class LoginForm(FlaskForm):
         username = StringField(validators=[DataRequired()])
-        password = StringField(validators=[DataRequired()])
+        password = PasswordField(validators=[DataRequired()])
 
     form = LoginForm()
 
@@ -38,7 +38,7 @@ def login():
 def register():
     class RegisterForm(FlaskForm):
         username = StringField(validators=[DataRequired()])
-        password = StringField(validators=[DataRequired()])
+        password = PasswordField(validators=[DataRequired()])
 
     form = RegisterForm()
 

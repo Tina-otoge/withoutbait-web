@@ -9,7 +9,7 @@
 	<a class="button" id="main-add" href="/add">Add a game</a>
 </div>
 
-<p style="text-align: center">Browse games</p>
+{% if title %}<h1>{{ title }}</h1>{% endif %}
 <p class="page">Sort | Filter</p>
 <div id="game-entries" class="page">
 	{% for entry in entries %}

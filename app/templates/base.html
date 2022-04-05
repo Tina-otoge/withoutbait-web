@@ -30,14 +30,14 @@
 					{% if not hide_search %}
 					<input class="search" placeholder="search game...">
 					{% endif %}
-					<a href="/latest">Latest</a>
+					<a href="/recent">Recent</a>
 					<a href="/popular">Popular</a>
 					<a href="/account">Account</a>
 				</div>
 			</div>
 		</nav>
 
-		<div id="content">
+		<div id="content" class="page-{{ page_class or 'default' }}">
 		{% block content %}
 		{% endblock %}
 		</div>

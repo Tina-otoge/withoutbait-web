@@ -53,3 +53,7 @@ button, .button, .button:hover, .button:visited {
 button:hover, .button:hover {
 	background: darkcyan;
 }
+
+.page-default h1 {
+	text-align: center;
+}

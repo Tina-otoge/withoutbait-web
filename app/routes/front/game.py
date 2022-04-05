@@ -19,6 +19,8 @@ def get_game(slug: str):
 @bp.route('/games/<slug>')
 def game(slug: str):
     game = get_game(slug)
+    game.views += 1
+    db.session.commit()
     return flask.render_template('game.html', entry=game)
 
 @bp.route('/games/<slug>/review', methods=('GET', 'POST'))
