@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      target: install-deps
+    ports:
+      - 5000:5000
+    environment:
+      - FLASK_RUN_HOST=0.0.0.0
+      - FLASK_DEBUG=1
+    volumes:
+      - .:/app:z
