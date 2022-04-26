@@ -4,7 +4,9 @@
 <div class="page" id="game-entry">
 	<h1 class="title">
 		{{ entry.name }}
+		{% if entry.subtitle %}
 		<small class="subtitle">{{ entry.subtitle }}</small>
+		{% endif %}
 	</h1>
 
 	<div class="content">
@@ -16,15 +18,16 @@
 
 				{% include "_entry_tags.html" %}
 
+				<div class="summary">
+					{{ entry.summary }}
+				</div>
+
 				<div class="genres">
 					<h3>Genres</h3>
 					{{ entry.genres|join(', ') }}
 				</div>
 
-				<div class="platforms">
-					<h3>Platforms</h3>
-					{{ entry.platforms|join(', ') }}
-				</div>
+				{% include "_entry_platforms.html" %}
 			</div>
 
 			<div>

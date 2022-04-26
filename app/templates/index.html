@@ -40,11 +40,7 @@
 					{{ entry.genres|join(', ') }}
 				</div>
 
-				<div class="platforms">
-					<h3>Platforms</h3>
-					{{ entry.platforms|join(', ') }}
-				</div>
-
+			{% include "_entry_platforms.html" %}
 			</div>
 
 			<div>
@@ -56,6 +52,17 @@
 		</div>
 	</div>
 	{% endfor %}
+	<div class="pager">
+		{% set page = request.args.get('p', 1)|int or 1 %}
+		{% set platform = request.args.get('platform', '') %}
+		<div>Page {{ page }}</div>
+		<div>
+			{% if page > 1 %}
+			<a href="?p={{ page - 1 }}&platform={{ platform }}">Prev</a> -
+			{% endif %}
+			<a href="?p={{ page + 1 }}&platform={{ platform }}">Next</a>
+		</div>
+	</div>
 </div>
 
 {% endblock %}

@@ -4,29 +4,54 @@
 
 # General
 Windows:
+  igdb: 6
 Mac:
+  igdb: 14
 Linux:
+  igdb: 3
 Android:
+  igdb: 34
 Android TV:
 iOS:
+  igdb: 39
 iPadOS:
 tvOS:
 Arcade:
+  igdb: 52
 
 # Sony
-PS3: "PlayStation 3"
-PS4: "PlayStation 4"
-PS5: "PlayStation 5"
-PSP: "PlayStation Portable"
-Vita: "PlayStation Vita"
+PS3:
+  name: "PlayStation 3"
+  igdb: 9
+PS4:
+  name: "PlayStation 4"
+  igdb: 48
+PS5:
+  name: "PlayStation 5"
+  igdb: 167
+PSP: 
+  name: "PlayStation Portable"
+  igdb: 38
+Vita:
+  name: "PlayStation Vita"
+  igdb: 46
 
 # Nintendo
 Wii:
+  igdb: 5
 Wii U:
-3DS: "Nintendo 3DS"
-Switch: "Nintendo Switch"
+  igdb: 41
+3DS:
+  name: "Nintendo 3DS"
+  igdb: 37
+Switch:
+  name: "Nintendo Switch"
+  igdb: 130
 
 # Xbox
 Xbox 360:
+  igdb: 12
 Xbox One:
+  igdb: 49
 Xbox Series:
+  igdb: 169

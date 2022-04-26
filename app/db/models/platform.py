@@ -6,6 +6,7 @@ from app import db
 class Platform(db.Base, db.IdMixin, db.SlugMixin):
     _short = sa.Column('short', sa.String)
     name = sa.Column(sa.String, nullable=False)
+    igdb_id = sa.Column(sa.Integer)
 
     @property
     def short(self):

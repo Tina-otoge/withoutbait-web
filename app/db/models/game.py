@@ -12,10 +12,14 @@ class Game(db.Base, db.IdMixin, db.SlugMixin, db.TimedMixin):
     cover_url = sa.Column(sa.String)
     score = sa.Column(sa.Integer)
     views = sa.Column(sa.Integer, **db.default_value(0))
+    igdb_score = sa.Column(sa.Float)
+    summary = sa.Column(sa.String)
+    release_date = sa.Column(sa.DateTime)
 
     tags = orm.relationship('Tag', secondary='game_tags', backref='games')
     genres = orm.relationship('Genre', secondary='game_genres', backref='games')
-    platforms = orm.relationship('Platform', secondary='game_platforms', backref='games')
+    platforms = orm.relationship('Platform', secondary='game_platforms', backref='games', lazy='dynamic')
+
 
     @property
     def rating(self):

@@ -60,9 +60,14 @@ def seed_tags(data: dict):
 def seed_platforms(data: dict):
     """
     Expected format:
-    - <short name>: [long name]
+    - <short name>:
+        ["name"]: <long_name>
+        ["igdb"]: <IGDB ID>
     """
-    for short_name, long_name in data.items():
+    for short_name, data in data.items():
+        data = data or {}
+        long_name = data.get('name')
+        igdb_id = data.get('igdb')
         slug = Platform.slugify(short_name)
         if not long_name:
             long_name = short_name
@@ -71,6 +76,7 @@ def seed_platforms(data: dict):
             'slug': slug,
             '_short': short_name,
             'name': long_name,
+            'igdb_id': igdb_id,
         }
         db.upcreate(Platform, values, match='slug')
         db.session.commit()

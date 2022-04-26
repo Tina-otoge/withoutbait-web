@@ -10,3 +10,4 @@ __pycache__/
 *.db
 /debug.json
 /secret.key
+/tokens.yml

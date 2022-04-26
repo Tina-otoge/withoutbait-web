@@ -1,0 +1,7 @@
+<div class="platforms">
+	<h3>Platforms</h3>
+	{% for platform in entry.platforms %}
+	<a href="/?platform={{ platform.slug }}">{{ platform }}</a>
+	{% endfor %}
+</div>
+

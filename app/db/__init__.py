@@ -1,4 +1,4 @@
-from typing import Type
+from typing import Iterable, Type
 import sqlalchemy as sa
 from sqlalchemy import orm, MetaData
 from sqlalchemy.engine import Engine
@@ -34,7 +34,11 @@ def default_value(value):
 
 def upcreate(type, values: dict, match=None):
     if match:
-        obj = session.query(type).filter_by(**{match: values[match]}).first()
+        if match is True:
+            match = values.keys()
+        if not isinstance(match, Iterable):
+            match = [match]
+        obj = session.query(type).filter_by(**{x: values[x] for x in match}).first()
         if obj:
             for k, v in values.items():
                 setattr(obj, k, v)
