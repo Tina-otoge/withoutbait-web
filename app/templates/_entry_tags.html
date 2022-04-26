@@ -1,3 +1,4 @@
+{% if entry.tags %}
 <div class="rating-tags">
 	{% for tag in entry.tags %}
 	<div class="tag {{ tag.rating }}" title="{{ tag.description or '' }}">
@@ -6,3 +7,4 @@
 	</div>
 	{% endfor %}
 </div>
+{% endif %}

@@ -22,10 +22,12 @@
 					{{ entry.summary }}
 				</div>
 
+				{% if entry.genres %}
 				<div class="genres">
 					<h3>Genres</h3>
 					{{ entry.genres|join(', ') }}
 				</div>
+				{% endif %}
 
 				{% include "_entry_platforms.html" %}
 			</div>
