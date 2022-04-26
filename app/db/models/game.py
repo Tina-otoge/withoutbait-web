@@ -19,6 +19,7 @@ class Game(db.Base, db.IdMixin, db.SlugMixin, db.TimedMixin):
     tags = orm.relationship('Tag', secondary='game_tags', backref='games')
     genres = orm.relationship('Genre', secondary='game_genres', backref='games')
     platforms = orm.relationship('Platform', secondary='game_platforms', backref='games', lazy='dynamic')
+    reviews = orm.relationship('Review', order_by='Review.id.desc()')
 
 
     @property

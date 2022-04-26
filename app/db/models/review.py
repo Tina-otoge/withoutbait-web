@@ -11,4 +11,4 @@ class Review(db.Base, db.IdMixin, db.TimedMixin):
 
     tags = orm.relationship('Tag', secondary='review_tags')
     author = orm.relationship('User', backref='reviews')
-    game = orm.relationship('Game', backref='reviews')
+    game = orm.relationship('Game', back_populates='reviews', order_by="Review.id.desc()")
