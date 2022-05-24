@@ -36,7 +36,7 @@ def upcreate(type, values: dict, match=None):
     if match:
         if match is True:
             match = values.keys()
-        if not isinstance(match, Iterable):
+        if not isinstance(match, Iterable) or isinstance(match, str):
             match = [match]
         obj = session.query(type).filter_by(**{x: values[x] for x in match}).first()
         if obj:

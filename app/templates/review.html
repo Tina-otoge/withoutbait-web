@@ -3,7 +3,30 @@
 {% block content %}
 <div class="page">
 	<h1>Reviewing {{ entry.name }}</h1>
-	{% include "_form.html" %}
+	<form method="post" id="review-form">
+		{{ form.hidden_tag() }}
+		<div class="form-input">
+			{{ form.comment.label }}
+			{{ form.comment }}
+		</div>
+		<div class="tags">
+		{% for field in form
+		if field.widget.input_type != 'hidden'
+		and field.name != 'comment'
+		%}
+			<div class="form-input">
+				{{ field.label }}
+				<i class="material-icons icon">{{ field.render_kw['data-icon'] }}</i>
+				<p class="description">{{ field.description }}</p>
+				{{ field }}
+				{% for error in field.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+				{% endfor %}
+			</div>
+			{% endfor %}
+		</div>
+		<input type="submit" value="Submit">
+	</form>
 </div>
 {% endblock %}
 

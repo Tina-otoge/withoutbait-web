@@ -8,6 +8,7 @@ class Review(db.Base, db.IdMixin, db.TimedMixin):
     author_id = sa.Column(sa.ForeignKey('users.id'))
     game_id = sa.Column(sa.ForeignKey('games.id'), nullable=False)
     comment = sa.Column(sa.Text)
+    current = sa.Column(sa.Boolean)
 
     tags = orm.relationship('Tag', secondary='review_tags')
     author = orm.relationship('User', backref='reviews')

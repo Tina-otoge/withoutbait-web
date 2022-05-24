@@ -35,7 +35,7 @@ def add_game_review(slug: str):
         setattr(
             ReviewForm,
             tag.slug.replace('-', '_'),
-            BooleanField(tag, description=tag.description),
+            BooleanField(tag, description=tag.description, render_kw={'data-icon': tag.icon}),
         )
 
     form = ReviewForm()
@@ -49,6 +49,9 @@ def add_game_review(slug: str):
         comment=form.comment.data,
     )
     db.session.add(review)
+    for row in db.session.query(Review).filter_by(game=game, current=True):
+        row.current = False
+    review.current = True
     db.session.commit()
     return flask.redirect(f'/games/{game.slug}')
 

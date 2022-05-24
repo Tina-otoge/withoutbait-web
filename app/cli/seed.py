@@ -4,6 +4,7 @@ from pathlib import Path
 import yaml
 
 from app.db.models import Platform, Tag, Genre
+from app.db.base import camel_to_snake
 from app import app, db
 from . import bp
 
@@ -47,11 +48,15 @@ def seed_tags(data: dict):
         type = meta.get('type')
         if type:
             type = type.upper()
+        icon = meta.get('icon')
+        if icon:
+            icon = camel_to_snake(icon)
         values = {
             'slug': Tag.slugify(name),
             'name': name,
             'description': meta.get('description'),
             'type': type,
+            'force_icon': icon,
         }
         db.upcreate(Tag, values, match='slug')
         db.session.commit()

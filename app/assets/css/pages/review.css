@@ -1,0 +1,22 @@
+#review-form .form-input {
+	width: 100%;
+	align-items: initial;
+}
+
+#review-form .tags {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#review-form .tags .form-input {
+	max-width: 200px;
+	display: flex;
+	flex-direction: column;
+	margin: 2em 1em;
+	justify-content: center;
+	text-align: center;
+}
+
+#review-form .tags .icon {
+	font-size: 50px;
+}
