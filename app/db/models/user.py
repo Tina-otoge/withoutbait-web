@@ -10,6 +10,7 @@ class User(db.Base, db.IdMixin, db.CreatedMixin, UserMixin):
 
     username = sa.Column(sa.String, unique=True)
     password = sa.Column(sa.String)
+    is_admin = sa.Column(sa.Boolean)
 
     def __init__(self, **kwargs):
         kwargs['password'] = werkzeug.security.generate_password_hash(kwargs['password'])

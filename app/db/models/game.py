@@ -5,6 +5,8 @@ from app import db
 
 
 class Game(db.Base, db.IdMixin, db.SlugMixin, db.TimedMixin):
+    REPR_KEYS = {'name'}
+
     is_slug_from_igdb = sa.Column(sa.Boolean, **db.default_value(False))
     name = sa.Column(sa.String, nullable=False)
     subtitle = sa.Column(sa.String)
@@ -20,7 +22,6 @@ class Game(db.Base, db.IdMixin, db.SlugMixin, db.TimedMixin):
     genres = orm.relationship('Genre', secondary='game_genres', backref='games')
     platforms = orm.relationship('Platform', secondary='game_platforms', backref='games', lazy='dynamic')
     reviews = orm.relationship('Review', order_by='Review.id.desc()')
-
 
     @property
     def rating(self):

@@ -1,3 +1,8 @@
+#site-intro {
+	margin: 2em auto;
+	font-size: 1.2em;
+}
+
 #main-search {
 	padding-top: 10%;
 	padding-bottom: 10%;
@@ -19,6 +24,24 @@
 
 #main-submit {
 	display: none;
+}
+
+#site-stats {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+#site-stats .stat {
+	display: flex;
+	flex-direction: column;
+	margin: 1em;
+}
+
+#site-stats .value {
+	text-align: center;
+	font-size: 2em;
+	font-weight: bold;
 }
 
 #game-entries {

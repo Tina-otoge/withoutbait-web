@@ -57,3 +57,7 @@ button:hover, .button:hover {
 .page-default h1 {
 	text-align: center;
 }
+
+.spaced {
+	margin-top: 4em;
+}

@@ -48,6 +48,8 @@ class Wrapper:
                 'Client-ID': self.client_id
             },
         )
+        if not result.ok:
+            raise Exception(result.content.decode())
         return post_process(result)
 
 
@@ -69,6 +71,20 @@ def platforms(search):
     )
     dump(data)
 
+
+@group.command('search')
+@click.argument('term')
+def search(term):
+    data = wrapper.req(
+        'games',
+        'fields'
+        '   name, total_rating, slug, first_release_date, platforms, summary,'
+        '   cover.url',
+        f'search "{term}"',
+    )
+    save_games(data)
+
+
 @group.command('popular')
 @click.option('-m', '--minimum-ratings', default=500)
 @click.option('-y', '--minimum-year', type=int)
@@ -87,22 +103,32 @@ def popular(amount, minimum_ratings, minimum_year):
         f'  & first_release_date > {release_timestamp}',
         f'limit {amount}',
     )
+    save_games(data)
+
+
+def save_games(data):
     platforms_by_igdb_id = {x.igdb_id: x for x in db.session.query(Platform)}
+    result = []
     for game in data:
         values = {
             'name': game['name'],
             'slug': game['slug'],
             'is_slug_from_igdb': True,
-            'igdb_score': game['total_rating'],
-            'summary': game['summary'],
+            'igdb_score': game.get('total_rating'),
+            'summary': game.get('summary'),
             'cover_url': game['cover']['url'].replace('t_thumb', 't_cover_big'),
             'release_date': datetime.fromtimestamp(game['first_release_date']),
         }
         obj = db.upcreate(Game, values, match=('is_slug_from_igdb', 'slug'))
         db.session.flush()
+        result.append(obj)
         for igdb_platform_id in game['platforms']:
             if igdb_platform_id not in platforms_by_igdb_id:
                 continue
-            obj.platforms.append(platforms_by_igdb_id[igdb_platform_id])
-        print(obj, obj.name, obj.igdb_score)
+            platform = platforms_by_igdb_id[igdb_platform_id]
+            if platform in obj.platforms:
+                continue
+            obj.platforms.append(platform)
+        print(obj, obj.igdb_score)
         db.session.commit()
+    return result

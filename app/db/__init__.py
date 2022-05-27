@@ -32,11 +32,11 @@ def default_value(value):
     }
 
 
-def upcreate(type, values: dict, match=None):
+def upcreate(type, values: dict, match=None, default=None):
     if match:
         if match is True:
             match = values.keys()
-        if not isinstance(match, Iterable) or isinstance(match, str):
+        if isinstance(match, str):
             match = [match]
         obj = session.query(type).filter_by(**{x: values[x] for x in match}).first()
         if obj:
@@ -44,6 +44,9 @@ def upcreate(type, values: dict, match=None):
                 setattr(obj, k, v)
             return obj
     obj = type(**values)
+    if default:
+        for k, v in default.items():
+            setattr(obj, k, v)
     session.add(obj)
     return obj
 
