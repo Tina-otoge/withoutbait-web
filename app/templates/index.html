@@ -3,52 +3,13 @@
 {% set hide_search = true %}
 
 {% block content %}
-<div class="page" id="site-intro">
-	<p>
-		<strong>Games Without Bait</strong> is a project that tries to bring more
-		clarity and transparency about video games pricing models to help the
-		consumers make a more enlightened decision before buying a game.
-	</p>
-	<p>
-		By providing tags and ratings for each games regarding their pricing models,
-		we want to help users fight against predatory tactics that could make them
-		develop gambling addiction or poor spending habits.
-	</p>
-	<p>
-		Video games data and assets are sourced from <a href="https://igdb.com">IGDB</a>,
-		tags and ratings are curated from reviews from our benevolant community.
-</div>
-<div id="main-search" class="page">
-	<p>Search games</p>
-	<form method="get" action=".">
-		<input placeholder="type a game name here..." name="q" value="{{ request.args.q or '' }}">
-		<input type="submit" id="main-submit">
-	</form>
-	{% if current_user.is_admin %}
-	<a class="button" id="main-add" href="/add">Add a game</a>
-	{% endif %}
-</div>
 
-<div class="page" id="site-stats">
-	<div class="stat">
-		<p>Total of games</p>
-		<span class="value">{{ stats.total_games }}
-	</div>
-	<div class="stat">
-		<p>Total of reviews</p>
-		<span class="value">{{ stats.total_reviews }}
-	</div>
-	<div class="stat">
-		<p>Total of unrated games</p>
-		<span class="value">{{ stats.total_games_unrated }}
-	</div>
-	<div class="stat">
-		<p>Total of site views</p>
-		<span class="value">{{ stats.front_loads_count }}
-	</div>
-</div>
+{% include "list/_intro.html" %}
+{% include "list/_stats.html" %}
+{% include "list/_search.html" %}
 
-{% if title %}<h1>{{ title }}</h1>{% endif %}
+{% if title %}<h1 id="page-title">{{ title }}</h1>{% endif %}
+
 <div id="game-entries" class="page">
 	{% for entry in entries %}
 	{% set url = '/games/' + entry.slug %}

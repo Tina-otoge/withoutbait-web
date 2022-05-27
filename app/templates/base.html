@@ -30,6 +30,9 @@
 					{% if not hide_search %}
 					<input class="search" placeholder="search game...">
 					{% endif %}
+					{% if current_user.is_authenticated %}
+					<a href="/contribute">Contribute</a>
+					{% endif %}
 					<a href="/recent">Recent</a>
 					<a href="/popular">Popular</a>
 					<a href="/account">Account</a>

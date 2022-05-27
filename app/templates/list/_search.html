@@ -1,0 +1,10 @@
+<div id="main-search" class="page">
+	<p>Search games</p>
+	<form method="get">
+		<input placeholder="type a game name here..." name="q" value="{{ request.args.q or '' }}">
+		<input type="submit" id="main-submit">
+	</form>
+	{% if current_user.is_admin %}
+	<a class="button" id="main-add" href="/add">Add a game</a>
+	{% endif %}
+</div>

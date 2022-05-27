@@ -51,6 +51,7 @@ def get_stats():
 def list_games_by_popularity():
     query = GamesQuery()
     query.query = query.query.order_by(Game.igdb_score.desc())
+    query.query = query.query.filter(Game.score != None)
     games = query.run()
     return flask.render_template(
         'index.html', entries=games, title='Popular',
@@ -60,9 +61,22 @@ def list_games_by_popularity():
 @bp.route('/recent')
 def list_games_by_date():
     query = GamesQuery()
+    query.query = query.query.filter(Game.score != None)
     query.query = query.query.order_by(Game.updated_at.desc(), Game.created_at.desc())
     games = query.run()
     return flask.render_template(
         'index.html', entries=games, title='Recent',
+        stats=get_stats(),
+    )
+
+
+@bp.route('/contribute')
+def list_unrated_games():
+    query = GamesQuery()
+    query.query = query.query.filter(Game.score == None)
+    query.query = query.query.order_by(Game.igdb_score.desc())
+    games = query.run()
+    return flask.render_template(
+        'index.html', entries=games, title='Unrated games',
         stats=get_stats(),
     )
