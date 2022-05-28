@@ -44,6 +44,19 @@
 	</div>
 </div>
 
+{% if current_user.is_admin %}
+<div class="page spaced admin-only">
+	<h2>Admin zone</h2>
+	<p>IGDB score: {{ entry.igdb_score }}</p>
+	<p>Views: {{ entry.views }}</p>
+	<p>Is IGDB slug: {{ entry.is_slug_from_igdb }}</p>
+	<p>Score: {{ entry.score }}</p>
+	<p>
+		<a class="button admin" href="/games/{{ entry.slug }}/delete">Delete</a>
+	</p>
+</div>
+{% endif %}
+
 <div class="page" id="reviews">
 	<p>Reviews</p>
 	<p><a class="button" href="{{ '/games/' + entry.slug + '/review' }}">Add review</a></p>
@@ -64,6 +77,11 @@
 			{% include "_entry_tags.html" %}
 			{% endwith %}
 		</div>
+		{% if current_user.is_admin %}
+		<div>
+			<a class="button admin" href="/games/{{ entry.slug }}/reviews/{{ review.id }}/delete">Delete</a>
+		</div>
+		{% endif %}
 	</div>
 	{% endfor %}
 </div>

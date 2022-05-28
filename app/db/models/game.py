@@ -21,7 +21,7 @@ class Game(db.Base, db.IdMixin, db.SlugMixin, db.TimedMixin):
     tags = orm.relationship('Tag', secondary='game_tags', backref='games')
     genres = orm.relationship('Genre', secondary='game_genres', backref='games')
     platforms = orm.relationship('Platform', secondary='game_platforms', backref='games', lazy='dynamic')
-    reviews = orm.relationship('Review', order_by='Review.id.desc()')
+    reviews = orm.relationship('Review', order_by='Review.id.desc()', cascade='all, delete-orphan')
 
     @property
     def rating(self):
@@ -40,11 +40,13 @@ class Game(db.Base, db.IdMixin, db.SlugMixin, db.TimedMixin):
         return db.session.query(Review).filter_by(game=self, current=True).first()
 
     def update_rating(self):
+        import flask
         self.tags = []
         if not self.review:
+            flask.flash('no review')
             self.score = None
             return
-        score = 100
+        self.score = 100
         for tag in self.review.tags:
             self.tags.append(tag)
-            score += tag.score
+            self.score += tag.score

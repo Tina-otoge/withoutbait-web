@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page spaced">
+	<h1>Useradd</h1>
+	<p>Change users' admin state</p>
+	{% include "_form.html" %}
+
+	<hr>
+
+	<h2>Current admins:</h2>
+	<ul>
+		{% for admin in admins %}
+		<li>{{ admin }}</li>
+		{% endfor %}
+	</ul>
+</div>
+
+{% endblock %}

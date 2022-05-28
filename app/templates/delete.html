@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page spaced">
+	<h2>Delete</h2>
+	<p>Do you confirm the deletion of the following entity:</p>
+	<pre>{{ entity }}</pre>
+	<form method="post" id="delete-form">
+		{{ form.hidden_tag() }}
+		{{ form.submit(value="Yes") }}
+		<a class="button" onclick="history.back();">No</a>
+	</form>
+</div>
+
+{% endblock %}

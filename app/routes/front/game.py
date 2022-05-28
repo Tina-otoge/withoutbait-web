@@ -7,6 +7,8 @@ from wtforms.validators import DataRequired
 from app import db
 from app.db.models import Game, Review, Tag
 from . import bp
+from .admin import admin_check
+from .delete import DeleteForm
 
 
 def get_game(slug: str):
@@ -22,6 +24,21 @@ def game(slug: str):
     game.views += 1
     db.commit()
     return flask.render_template('game.html', entry=game)
+
+@bp.route('/games/<slug>/delete', methods=['GET', 'POST'])
+@flask_login.login_required
+def delete_game(slug: str):
+    admin_check()
+
+    game = get_game(slug)
+    form = DeleteForm()
+
+    if form.validate_on_submit():
+        db.session.delete(game)
+        db.session.commit()
+        return flask.redirect('/')
+
+    return flask.render_template('delete.html', form=form, entity=game)
 
 @bp.route('/games/<slug>/review', methods=('GET', 'POST'))
 @flask_login.login_required
@@ -56,13 +73,35 @@ def add_game_review(slug: str):
     for row in db.session.query(Review).filter_by(game=game, current=True):
         row.current = False
     review.current = True
+    db.session.flush()
     game.update_rating()
     db.commit()
     return flask.redirect(f'/games/{game.slug}')
 
+@bp.route('/games/<slug>/reviews/<int:id>/delete', methods=('GET', 'POST'))
+@flask_login.login_required
+def delete_review(slug, id):
+    admin_check()
+
+    review = db.session.get(Review, id)
+    if not review or review.game.slug != slug:
+        return flask.redirect('/')
+
+    form = DeleteForm()
+
+    if form.validate_on_submit():
+        db.session.delete(review)
+        db.session.commit()
+        return flask.redirect(f'/games/{slug}')
+
+    return flask.render_template('delete.html', entity=review, form=form)
+
+
 @bp.route('/add', methods=('GET', 'POST'))
 @flask_login.login_required
 def add_game():
+    return flask.redirect('/')
+
     class AddGameForm(FlaskForm):
         is_slug_from_igdb = BooleanField()
         slug = StringField()

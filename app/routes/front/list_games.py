@@ -2,7 +2,7 @@ import flask
 
 from app import app, db
 from app.cli.igdb_seed import search_and_add_games
-from app.db.models import Game, Platform, Review
+from app.db.models import Game, Platform, Review, User
 from . import bp, get_front_loads_count
 
 
@@ -41,10 +41,10 @@ def get_games_query(**kwargs):
 
 def get_stats():
     return {
-        'total_games': db.session.query(Game).count(),
+        'total_games_reviewed': db.session.query(Game).filter(Game.score != None).count(),
         'total_reviews': db.session.query(Review).count(),
-        'total_games_unrated': db.session.query(Game).filter(Game.score == None).count(),
         'front_loads_count': get_front_loads_count().value,
+        'total_users': db.session.query(User).count()
     }
 
 

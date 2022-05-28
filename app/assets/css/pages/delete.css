@@ -1,0 +1,7 @@
+#delete-form {
+	width: 600px;
+	margin: auto;
+	display: flex;
+	align-items: space-between;
+	padding: 3em;
+}

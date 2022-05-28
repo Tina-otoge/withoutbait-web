@@ -4,6 +4,7 @@ input, textarea {
 	border-bottom: 1px solid gray;
 	padding: .5em 1em;
 	color: inherit;
+	font-family: inherit;
 }
 
 form {

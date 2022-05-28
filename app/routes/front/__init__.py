@@ -23,4 +23,4 @@ def increase_front_loads_count():
     count.value = count.value + 1
     db.commit()
 
-from . import errors, faq, game, list_games, login, user
+from . import admin, errors, faq, game, list_games, login, user

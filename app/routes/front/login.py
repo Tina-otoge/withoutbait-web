@@ -47,7 +47,8 @@ def register():
 
     user = db.session.query(User).filter_by(username=form.username.data).first()
     if user:
-        raise Exception(f'User {user} already exists')
+        flask.flash('Username already taken')
+        return flask.render_template('register.html', form=form)
     user = User(username=form.username.data, password=form.password.data)
     db.add(user, save=True)
     flask_login.login_user(user, remember=True)

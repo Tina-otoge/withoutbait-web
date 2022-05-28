@@ -32,6 +32,13 @@
 	justify-content: space-between;
 }
 
+@media screen and (max-width: 600px) {
+	#site-stats {
+		flex-direction: column;
+		text-align: center;
+	}
+}
+
 #site-stats .stat {
 	display: flex;
 	flex-direction: column;
@@ -83,6 +90,12 @@
 	height: 100%;
 	width: 256px;
 	object-fit: contain;
+}
+
+@media screen and (max-width: 600px) {
+	#game-entries .art {
+		width: 100px;
+	}
 }
 
 #game-entries .title {

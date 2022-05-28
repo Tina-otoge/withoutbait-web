@@ -33,6 +33,9 @@
 					<a href="/recent">Recent</a>
 					<a href="/popular">Popular</a>
 					<a href="/account">Account</a>
+					{% if current_user.is_admin %}
+					<a href="/admin">Admin</a>
+					{% endif %}
 				</div>
 			</div>
 		</nav>

@@ -50,6 +50,10 @@ button, .button, .button:hover, .button:visited {
 	text-decoration: none;
 }
 
+button.admin, .button.admin {
+	background: red;
+}
+
 button:hover, .button:hover {
 	background: darkcyan;
 }
