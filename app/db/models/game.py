@@ -40,10 +40,8 @@ class Game(db.Base, db.IdMixin, db.SlugMixin, db.TimedMixin):
         return db.session.query(Review).filter_by(game=self, current=True).first()
 
     def update_rating(self):
-        import flask
         self.tags = []
         if not self.review:
-            flask.flash('no review')
             self.score = None
             return
         self.score = 100
