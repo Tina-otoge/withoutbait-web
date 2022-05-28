@@ -7,22 +7,22 @@ Expansions:
 
 Pay-to-win:
   description: "Paying can give you an advantage over other players"
-  points: -10
+  points: -30
   icon: "toll"
 
 Minor items:
   description: "Simple content such as new items or characters can be bought"
-  points: -5
+  points: -10
   icon: "category"
 
 Cosmetics:
   description: "Items that only changes the appearance can be bought"
-  points: -5
+  points: -10
   icon: "checkroom"
 
 Skip:
   description: "You can pay to obtain things that can be obtained freely but faster"
-  points: -5
+  points: -15
   icon: "update"
 
 Mandatory subscription:
@@ -31,11 +31,11 @@ Mandatory subscription:
 
 Optional subscription:
   description: "An additional subscription gives you more content in the game"
-  points: -5
+  points: -10
 
 Lootbox:
   description: "You can pay to obtain items at random"
-  points: -10
+  points: -30
   icon: "home_repair_service"
 
 3rd-party content:
