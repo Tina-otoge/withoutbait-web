@@ -1,10 +1,11 @@
+import flask
 from typing import Iterable, Type
 import sqlalchemy as sa
 from sqlalchemy import orm, MetaData
 from sqlalchemy.engine import Engine
 import sqlalchemy_utils as sa_utils
 
-from app import config
+from app import app, config
 from .base import Base as CustomBase
 
 
@@ -18,8 +19,14 @@ meta = MetaData(naming_convention={
 
 Base: Type[CustomBase] = orm.declarative_base(cls=CustomBase, metadata=meta)
 engine: Engine = sa.create_engine(config.DB_URI)
-Session = orm.sessionmaker(bind=engine, autoflush=False)
-session = Session()
+_Session = orm.sessionmaker(bind=engine, autoflush=False)
+
+app.session = orm.scoped_session(_Session, scopefunc=flask._app_ctx_stack.__ident_func__)
+
+@app.teardown_appcontext
+def close_sessions(exception=None):
+    app.session.remove()
+
 
 if not sa_utils.database_exists(engine.url):
     sa_utils.create_database(engine.url)
@@ -32,7 +39,8 @@ def default_value(value):
     }
 
 
-def upcreate(type, values: dict, match=None, default=None):
+def upcreate(type, values: dict, match=None, default=None, session=None):
+    session = session or app.session
     if match:
         if match is True:
             match = values.keys()
@@ -49,5 +57,19 @@ def upcreate(type, values: dict, match=None, default=None):
             setattr(obj, k, v)
     session.add(obj)
     return obj
+
+
+def commit(session=None):
+    (session or app.session).commit()
+
+
+def add(*objs, session=None, save=False):
+    session = session or app.session
+    for obj in objs:
+        session.add(obj)
+    if save:
+        commit(session=session)
+
+session = app.session
 
 from .mixins import IdMixin, SlugMixin, CreatedMixin, TimedMixin

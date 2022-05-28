@@ -20,7 +20,7 @@ def get_game(slug: str):
 def game(slug: str):
     game = get_game(slug)
     game.views += 1
-    db.session.commit()
+    db.commit()
     return flask.render_template('game.html', entry=game)
 
 @bp.route('/games/<slug>/review', methods=('GET', 'POST'))
@@ -48,11 +48,16 @@ def add_game_review(slug: str):
         game=game,
         comment=form.comment.data,
     )
+    for tag in tags:
+        if not getattr(form, tag.slug.replace('-', '_')).data:
+            continue
+        review.tags.append(tag)
     db.session.add(review)
     for row in db.session.query(Review).filter_by(game=game, current=True):
         row.current = False
     review.current = True
-    db.session.commit()
+    game.update_rating()
+    db.commit()
     return flask.redirect(f'/games/{game.slug}')
 
 @bp.route('/add', methods=('GET', 'POST'))
@@ -83,6 +88,5 @@ def add_game():
         official_url=form.official_url.data,
         cover_url=form.cover_url.data,
     )
-    db.session.add(game)
-    db.session.commit()
+    db.add(game, save=True)
     return flask.redirect(f'/games/{slug}')

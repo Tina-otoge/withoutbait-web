@@ -13,31 +13,34 @@
 		<img class="art" src="{{ entry.cover_url }}">
 
 		<div class="side">
-			<div>
-				<div class="rating {{ entry.rating }}">{{ entry.rating }}</div>
+			<div class="rating {{ entry.rating }}">{{ entry.rating }}</div>
 
-				{% include "_entry_tags.html" %}
+			{% include "_entry_tags.html" %}
 
-				<div class="summary">
-					{{ entry.summary }}
-				</div>
-
-				{% if entry.genres %}
-				<div class="genres">
-					<h3>Genres</h3>
-					{{ entry.genres|join(', ') }}
-				</div>
-				{% endif %}
-
-				{% include "_entry_platforms.html" %}
+			<div class="summary">
+				{{ entry.summary }}
 			</div>
 
-			<div>
-				{% if entry.official_url %}
-				<a class="button" href="{{ entry.official_url }}">Official website</a>
-				{% endif %}
+			{% if entry.genres %}
+			<div class="genres">
+				<h3>Genres</h3>
+				{{ entry.genres|join(', ') }}
 			</div>
+			{% endif %}
+
+			{% include "_entry_platforms.html" %}
+
+		<div>
+			{% if entry.official_url %}
+			<a class="button" href="{{ entry.official_url }}">Official website</a>
+			{% endif %}
+			{% if entry.is_slug_from_igdb %}
+			<a class="button" href="https://www.igdb.com/games/{{ entry.slug }}">IGDB entry</a>
+			{% endif %}
 		</div>
+
+		</div>
+
 	</div>
 </div>
 
@@ -47,12 +50,10 @@
 
 	{% for review in entry.reviews %}
 	<div class="review">
+		<img class="avatar" src="{{ review.author.avatar_url }}">
 		<div class="meta">
-			<div class="profile">
-				<img class="avatar" src="{{ review.author.avatar_url }}">
-				<div class="username">{{ review.author.username }}</div>
-			</div>
-			<time title="{{ review.time }}">{{ review.time }}</time>
+			<div class="username">{{ review.author.username }}</div>
+			<time title="{{ review.time }}" data-date-fmt="relative">{{ review.time }}</time>
 		</div>
 
 		<div class="content">

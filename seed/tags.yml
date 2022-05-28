@@ -1,3 +1,6 @@
+# Icons names must match Material Icons
+# see https://fonts.google.com/icons?selected=Material+Icons
+
 Expansions:
   description: "Additional content such as new chapters can be bought"
   points: -10

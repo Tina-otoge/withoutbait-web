@@ -75,12 +75,18 @@ def platforms(search):
 @group.command('search')
 @click.argument('term')
 def search(term):
+    search_and_add_games(term, safe=True)
+
+
+def search_and_add_games(query, safe=False):
+    if not safe:
+        query = query.replace(';{}"\'', '')
     data = wrapper.req(
         'games',
         'fields'
         '   name, total_rating, slug, first_release_date, platforms, summary,'
         '   cover.url',
-        f'search "{term}"',
+        f'search "{query}"',
     )
     save_games(data)
 
@@ -110,19 +116,27 @@ def save_games(data):
     platforms_by_igdb_id = {x.igdb_id: x for x in db.session.query(Platform)}
     result = []
     for game in data:
+        date = game.get('first_release_date')
+        if date:
+            date = datetime.fromtimestamp(date)
+        cover = game.get('cover')
+        if cover:
+            cover = cover['url'].replace('t_thumb', 't_cover_big')
+        else:
+            cover = 'https://images.igdb.com/igdb/image/upload/t_cover_big/nocover.png'
         values = {
             'name': game['name'],
             'slug': game['slug'],
             'is_slug_from_igdb': True,
             'igdb_score': game.get('total_rating'),
             'summary': game.get('summary'),
-            'cover_url': game['cover']['url'].replace('t_thumb', 't_cover_big'),
-            'release_date': datetime.fromtimestamp(game['first_release_date']),
+            'cover_url': cover,
+            'release_date': date,
         }
         obj = db.upcreate(Game, values, match=('is_slug_from_igdb', 'slug'))
         db.session.flush()
         result.append(obj)
-        for igdb_platform_id in game['platforms']:
+        for igdb_platform_id in game.get('platforms', []):
             if igdb_platform_id not in platforms_by_igdb_id:
                 continue
             platform = platforms_by_igdb_id[igdb_platform_id]

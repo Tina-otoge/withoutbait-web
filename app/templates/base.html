@@ -27,9 +27,6 @@
 				</div>
 
 				<div class="nav-items">
-					{% if not hide_search %}
-					<input class="search" placeholder="search game...">
-					{% endif %}
 					{% if current_user.is_authenticated %}
 					<a href="/contribute">Contribute</a>
 					{% endif %}
@@ -40,14 +37,35 @@
 			</div>
 		</nav>
 
+		<ul>
+			{% for message in get_flashed_messages() %}
+			<li>{{ message }}</li>
+			{% endfor %}
+		</ul>
+
 		<div id="content" class="page-{{ page_class or 'default' }}">
 		{% block content %}
 		{% endblock %}
 		</div>
 
 		<footer id="footer">
-			EPITECH Brussels © 2022
+			<ul>
+				<li>
+					<a href="/faq">FAQ</a>
+				</li>
+				<li>
+					<a href="https://github.com/GamesWithoutBait/">Source code</a>
+				</li>
+			</ul>
+			<p>
+				EPITECH Brussels © 2022
+			</p>
 		</footer>
 		{% endblock %}
+
+		<script src="https://cdn.jsdelivr.net/npm/luxon@2/build/global/luxon.min.js"></script>
+		{% assets "js" %}
+		<script src="{{ ASSET_URL }}"></script>
+		{% endassets %}
 	</body>
 </html>

@@ -14,3 +14,4 @@ def register(name, iterable=None):
 def main():
     """Register every assets bundles"""
     register('css')
+    register('js')

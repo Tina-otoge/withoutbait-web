@@ -4,7 +4,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
 from wtforms.validators import DataRequired
 
-from app import db, login_manager
+from app import login_manager, db
 from app.db.models import User
 from . import bp
 
@@ -49,8 +49,7 @@ def register():
     if user:
         raise Exception(f'User {user} already exists')
     user = User(username=form.username.data, password=form.password.data)
-    db.session.add(user)
-    db.session.commit()
+    db.add(user, save=True)
     flask_login.login_user(user, remember=True)
 
     return flask.redirect('/')

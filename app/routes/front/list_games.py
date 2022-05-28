@@ -1,6 +1,7 @@
 import flask
 
-from app import db
+from app import app, db
+from app.cli.igdb_seed import search_and_add_games
 from app.db.models import Game, Platform, Review
 from . import bp, get_front_loads_count
 
@@ -22,6 +23,7 @@ class GamesQuery:
             query = query.filter(Platform.slug == platform)
         if search:
             query = query.filter(Game.name.ilike(f'%{search}%'))
+        self.search = search
         self.query = query
         self.page = page
 
@@ -73,6 +75,12 @@ def list_games_by_date():
 @bp.route('/contribute')
 def list_unrated_games():
     query = GamesQuery()
+    if query.search:
+        try:
+            search_and_add_games(query.search)
+        except Exception as e:
+            if app.config['DEBUG']:
+                raise e
     query.query = query.query.filter(Game.score == None)
     query.query = query.query.order_by(Game.igdb_score.desc())
     games = query.run()

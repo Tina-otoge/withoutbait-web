@@ -13,3 +13,7 @@ class Review(db.Base, db.IdMixin, db.TimedMixin):
     tags = orm.relationship('Tag', secondary='review_tags')
     author = orm.relationship('User', backref='reviews')
     game = orm.relationship('Game', back_populates='reviews', order_by="Review.id.desc()")
+
+    @property
+    def time(self):
+        return self.updated_at or self.created_at

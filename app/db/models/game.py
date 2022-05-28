@@ -32,3 +32,19 @@ class Game(db.Base, db.IdMixin, db.SlugMixin, db.TimedMixin):
         if self.score >= 35:
             return 'meh'
         return 'bad'
+
+    @property
+    def review(self):
+        from app import db
+        from app.db.models import Review
+        return db.session.query(Review).filter_by(game=self, current=True).first()
+
+    def update_rating(self):
+        self.tags = []
+        if not self.review:
+            self.score = None
+            return
+        score = 100
+        for tag in self.review.tags:
+            self.tags.append(tag)
+            score += tag.score
