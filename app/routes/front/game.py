@@ -1,8 +1,7 @@
 import flask
 import flask_login
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, TextAreaField
-from wtforms.validators import DataRequired
+from wtforms import BooleanField, TextAreaField
 
 from app import db
 from app.db.models import Game, Review, Tag
@@ -95,37 +94,3 @@ def delete_review(slug, id):
         return flask.redirect(f'/games/{slug}')
 
     return flask.render_template('delete.html', entity=review, form=form)
-
-
-@bp.route('/add', methods=('GET', 'POST'))
-@flask_login.login_required
-def add_game():
-    return flask.redirect('/')
-
-    class AddGameForm(FlaskForm):
-        is_slug_from_igdb = BooleanField()
-        slug = StringField()
-        name = StringField(validators=[DataRequired()])
-        subtitle = StringField()
-        official_url = StringField()
-        cover_url = StringField()
-
-    form = AddGameForm()
-
-    if not form.validate_on_submit():
-        return flask.render_template('add_game.html', form=form)
-
-    slug = form.slug.data or Game.slugify(form.name.data)
-    game = db.session.query(Game).filter_by(slug=slug).first()
-    if game:
-        raise Exception(f'Game with slug {slug} already exists')
-    game = Game(
-        slug=slug,
-        is_slug_from_igdb=form.is_slug_from_igdb.data,
-        name=form.name.data,
-        subtitle=form.subtitle.data,
-        official_url=form.official_url.data,
-        cover_url=form.cover_url.data,
-    )
-    db.add(game, save=True)
-    return flask.redirect(f'/games/{slug}')
