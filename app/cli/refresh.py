@@ -8,3 +8,4 @@ from . import bp
 def refresh():
     for game in db.session.query(Game):
         game.update_rating()
+    db.commit()
