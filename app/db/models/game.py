@@ -49,4 +49,5 @@ class Game(db.Base, db.IdMixin, db.SlugMixin, db.TimedMixin):
         self.score = 100
         for tag in self.review.tags:
             self.tags.append(tag)
-            self.score += tag.score
+            if tag.score != None:
+                self.score += tag.score

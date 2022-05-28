@@ -51,12 +51,16 @@ def seed_tags(data: dict):
         icon = meta.get('icon')
         if icon:
             icon = camel_to_snake(icon)
+        score = meta.get('points', 0)
+        if score:
+            score = int(score)
         values = {
             'slug': Tag.slugify(name),
             'name': name,
             'description': meta.get('description'),
             'type': type,
             'force_icon': icon,
+            'score': score,
         }
         db.upcreate(Tag, values, match='slug')
         db.session.commit()
