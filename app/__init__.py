@@ -19,7 +19,7 @@ login_manager.login_view = '/register'
 
 
 def register_blueprints():
-    for name in ('routes.api', 'routes.front', 'cli'):
+    for name in ('routes.api', 'routes.front', 'routes.front.admin', 'cli'):
         module = importlib.import_module(f'.{name}', __name__)
         if hasattr(module, 'bp'):
             app.register_blueprint(module.bp)

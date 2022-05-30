@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page spaced">
+	<p>Showing last 100 entries</p>
+	<ul>
+		{% for review in reviews %}
+		<li style="margin: .5em 0">
+			<span data-date-fmt="relative">{{ review.created_at }}</span>:
+			Review #{{ review.id }}
+			by {{ review.author }}
+			on <a href="/games/{{ review.game.slug }}">{{ review.game }}</a>
+			<div>{{ review.comment }}</div>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+
+{% endblock %}

@@ -24,6 +24,11 @@ class Game(db.Base, db.IdMixin, db.SlugMixin, db.TimedMixin):
     platforms = orm.relationship('Platform', secondary='game_platforms', backref='games', lazy='dynamic')
     reviews = orm.relationship('Review', order_by='Review.id.desc()', cascade='all, delete-orphan')
 
+    def __str__(self):
+        if self.subtitle:
+            return f'{self.name} ({self.subtitle})'
+        return self.name
+
     @property
     def rating(self):
         if not self.score:
