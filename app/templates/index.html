@@ -6,7 +6,7 @@
 {% include "list/_stats.html" %}
 {% include "list/_search.html" %}
 
-{% if title and entries.length %}<h1 id="page-title">{{ title }}</h1>{% endif %}
+{% if title and entries.count() %}<h1 id="page-title">{{ title }}</h1>{% endif %}
 
 <div id="game-entries" class="page">
 	{% for entry in entries %}

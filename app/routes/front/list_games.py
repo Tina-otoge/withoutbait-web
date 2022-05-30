@@ -83,11 +83,10 @@ def list_unrated_games():
         except Exception as e:
             if app.config['DEBUG']:
                 raise e
-    query.query = query.query.filter(Game.score == None)
     query.query = query.query.order_by(Game.igdb_score.desc())
     games = query.run()
     return flask.render_template(
-        'index.html', entries=games, title='Unrated games',
+        'index.html', entries=games, title='Contribute',
         stats=get_stats(),
         contributing=True,
     )
