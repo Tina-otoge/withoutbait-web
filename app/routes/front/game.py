@@ -69,11 +69,8 @@ def add_game_review(slug: str):
             continue
         review.tags.append(tag)
     db.session.add(review)
-    for row in db.session.query(Review).filter_by(game=game, current=True):
-        row.current = False
-    review.current = True
     db.session.flush()
-    game.update_rating()
+    game.update()
     db.commit()
     return flask.redirect(f'/games/{game.slug}')
 
@@ -89,7 +86,10 @@ def delete_review(slug, id):
     form = DeleteForm()
 
     if form.validate_on_submit():
+        game = review.game
         db.session.delete(review)
+        db.session.flush()
+        game.update()
         db.session.commit()
         return flask.redirect(f'/games/{slug}')
 

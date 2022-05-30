@@ -56,3 +56,16 @@ class Game(db.Base, db.IdMixin, db.SlugMixin, db.TimedMixin):
             if tag.score != None:
                 self.score += tag.score
         self.updated_at = datetime.now()
+
+    def update_reviews(self):
+        from app.db.models import Review
+        for row in db.session.query(Review).filter_by(game=self, current=True):
+            row.current = False
+        current = db.session.query(Review).filter_by(game=self).order_by(Review.id.desc()).first()
+        if current:
+            current.current = True
+
+    def update(self):
+        self.update_reviews()
+        db.session.flush()
+        self.update_rating()
