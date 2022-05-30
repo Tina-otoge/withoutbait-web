@@ -123,3 +123,18 @@
 #game-entries .button {
 	margin: 0 1em;
 }
+
+#game-entries .empty-warning {
+	text-align: center;
+	font-size: x-large;
+}
+
+#game-entries .empty-warning a {
+	color: red;
+	text-decoration: underline;
+}
+
+#game-entries .big-kaomoji {
+	font-size: 3em;
+	color: gray;
+}

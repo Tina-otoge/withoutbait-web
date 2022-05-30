@@ -27,22 +27,23 @@
 				</div>
 
 				<div class="nav-items">
-					{% if current_user.is_authenticated %}
-					<a href="/contribute">Contribute</a>
-					{% endif %}
-					<a href="/recent">Recent</a>
-					<a href="/popular">Popular</a>
-					<a href="/account">Account</a>
 					{% if current_user.is_admin %}
 					<a href="/admin">Admin</a>
 					{% endif %}
+					<a href="/contribute">Contribute</a>
+					<a href="/recent">Recent</a>
+					<a href="/popular">Popular</a>
+					<a href="/account">Account</a>
 				</div>
 			</div>
 		</nav>
 
-		<ul>
+		<ul id="flash-messages">
 			{% for message in get_flashed_messages() %}
-			<li>{{ message }}</li>
+			<li>
+				<div class="content">{{ message }}</div>
+				<i class="material-icons close">highlight_off</i>
+			</li>
 			{% endfor %}
 		</ul>
 

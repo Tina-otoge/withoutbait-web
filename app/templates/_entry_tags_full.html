@@ -1,0 +1,11 @@
+{% if entry.tags %}
+<div class="rating-tags">
+	{% for tag in entry.tags %}
+	<div class="tag {{ tag.rating }}">
+		<span class="icon material-icons">{{ tag.icon }}</span>
+		{{ tag }}
+	</div>
+	<div class="tag-description">{{ tag.description }}</div>
+	{% endfor %}
+</div>
+{% endif %}

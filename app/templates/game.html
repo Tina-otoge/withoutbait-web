@@ -15,20 +15,26 @@
 		<div class="side">
 			<div class="rating {{ entry.rating }}">{{ entry.rating }}</div>
 
-			{% include "_entry_tags.html" %}
+			{% include "_entry_tags_full.html" %}
 
-			<div class="summary">
-				{{ entry.summary }}
-			</div>
+		</div>
 
-			{% if entry.genres %}
-			<div class="genres">
-				<h3>Genres</h3>
-				{{ entry.genres|join(', ') }}
-			</div>
-			{% endif %}
+	</div>
 
-			{% include "_entry_platforms.html" %}
+	<div class="extra-info">
+
+		<div class="summary">
+			{{ entry.summary }}
+		</div>
+
+		{% if entry.genres %}
+		<div class="genres">
+			<h3>Genres</h3>
+			{{ entry.genres|join(', ') }}
+		</div>
+		{% endif %}
+
+		{% include "_entry_platforms.html" %}
 
 		<div>
 			{% if entry.official_url %}
@@ -39,9 +45,8 @@
 			{% endif %}
 		</div>
 
-		</div>
-
 	</div>
+
 </div>
 
 {% if current_user.is_admin %}

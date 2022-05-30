@@ -8,3 +8,8 @@
 	padding: 2em 3em;
 	text-align: center;
 }
+
+#footer ul {
+	list-style: none;
+	padding: 0;
+}

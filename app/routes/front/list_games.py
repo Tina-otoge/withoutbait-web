@@ -1,4 +1,5 @@
 import flask
+import flask_login
 
 from app import app, db
 from app.cli.igdb_seed import search_and_add_games
@@ -73,6 +74,7 @@ def list_games_by_date():
 
 
 @bp.route('/contribute')
+@flask_login.login_required
 def list_unrated_games():
     query = GamesQuery()
     if query.search:

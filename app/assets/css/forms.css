@@ -18,6 +18,9 @@ form {
 	align-items: start;
 }
 
-.form-input input[type="text"], .form-input textarea {
+.form-input input[type="text"],
+.form-input input[type="password"],
+.form-input textarea
+{
 	min-width: 60%;
 }

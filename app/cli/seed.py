@@ -45,6 +45,8 @@ def seed_tags(data: dict):
         ["type"]: [type]
     """
     for name, meta in data.items():
+        slug = Tag.slugify(name)
+        name = meta.get('name', name)
         type = meta.get('type')
         if type:
             type = type.upper()
@@ -55,7 +57,7 @@ def seed_tags(data: dict):
         if score:
             score = int(score)
         values = {
-            'slug': Tag.slugify(name),
+            'slug': slug,
             'name': name,
             'description': meta.get('description'),
             'type': type,

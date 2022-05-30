@@ -9,6 +9,11 @@
 
 #game-entry .content {
 	display: flex;
+	margin-bottom: 1.5em;
+}
+
+#game-entry .extra-info > * {
+	margin: 1em 0;
 }
 
 @media screen and (max-width: 600px) {
@@ -35,12 +40,12 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	align-self: start;
 }
 
 #game-entry .side > * {
 	margin: 1em 0;
 }
-
 
 #game-entry .rating {
 	margin: auto;
@@ -49,6 +54,16 @@
 	max-width: 200px;
 	padding: .5em 1em;
 	border-radius: .5em;
+}
+
+#game-entry .tag {
+	font-size: 1.2em;
+}
+
+#game-entry .tag-description {
+	margin: .5em 1em 1em 0;
+	font-size: .9em;
+	color: lightgray;
 }
 
 #reviews {

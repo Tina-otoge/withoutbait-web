@@ -65,3 +65,36 @@ button:hover, .button:hover {
 .spaced {
 	margin-top: 4em;
 }
+
+#flash-messages {
+	max-width: 600px;
+	margin: auto;
+	list-style: none;
+}
+
+#flash-messages li {
+	margin: 1em;
+	display: flex;
+	background: rgba(0, 0, 0, .5);
+	padding: .5em 1em;
+	border: 1px solid gold;
+}
+
+#flash-messages .content {
+	width: 100%;
+}
+
+#flash-messages .close {
+	top: 0;
+	cursor: pointer;
+}
+
+.pager {
+	margin-top: 1em;
+	text-align: center;
+}
+
+.pager a {
+	margin-top: .5em;
+	color: orange;
+}
