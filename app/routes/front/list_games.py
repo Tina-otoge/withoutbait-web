@@ -89,4 +89,5 @@ def list_unrated_games():
     return flask.render_template(
         'index.html', entries=games, title='Unrated games',
         stats=get_stats(),
+        contributing=True,
     )
