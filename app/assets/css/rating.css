@@ -2,11 +2,11 @@
 	background: gray;
 }
 
-.rating.good {
+.rating.clean {
 	background: green;
 }
 
-.rating.bad {
+.rating.danger {
 	background: red;
 }
 
@@ -14,7 +14,7 @@
 	background: orange;
 }
 
-.rating-tags .tag.good .icon {
+.rating-tags .tag.clean .icon {
 	color: green;
 }
 
@@ -22,6 +22,6 @@
 	color: orange;
 }
 
-.rating-tags .tag.bad .icon {
+.rating-tags .tag.danger .icon {
 	color: red;
 }

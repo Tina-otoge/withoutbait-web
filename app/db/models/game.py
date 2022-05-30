@@ -28,10 +28,10 @@ class Game(db.Base, db.IdMixin, db.SlugMixin, db.TimedMixin):
         if not self.score:
             return 'Not rated'
         if self.score >= 75:
-            return 'good'
+            return 'clean'
         if self.score >= 35:
             return 'meh'
-        return 'bad'
+        return 'danger'
 
     @property
     def review(self):

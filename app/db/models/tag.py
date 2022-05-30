@@ -37,8 +37,8 @@ class Tag(db.Base, db.IdMixin, db.SlugMixin, db.TimedMixin):
         if self.force_rating:
             return self.force_rating
         if self.score < 0:
-            return 'bad'
+            return 'danger'
         if self.score > 0:
-            return 'good'
+            return 'clean'
         return 'meh'
 
