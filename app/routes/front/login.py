@@ -20,16 +20,23 @@ def login():
         username = StringField(validators=[DataRequired()])
         password = PasswordField(validators=[DataRequired()])
 
+    def render():
+        return flask.render_template('login.html', form=form)
+
     form = LoginForm()
 
     if not form.validate_on_submit():
-        return flask.render_template('login.html', form=form)
+        return render()
 
     user = db.session.query(User).filter_by(username=form.username.data).first()
     if not user:
-        raise Exception(f'User {user} not found')
+        flask.flash(f'User "{form.username.data}" not found')
+        return render()
+
     if not user.check_password(form.password.data):
-        raise Exception('Invalid password')
+        flask.flash('Wrong password')
+        return render()
+
     flask_login.login_user(user, remember=True)
 
     return flask.redirect('/')
