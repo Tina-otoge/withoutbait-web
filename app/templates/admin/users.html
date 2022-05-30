@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page spaced">
+	<p>Showing {{ users.count() }} entries</p>
+	<ul class="simple-list">
+		{% for user in users %}
+		<li>
+			<span data-date-fmt="relative">{{ user.created_at }}</span>:
+			User #{{ user.id }}
+			{{ user.username }}
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+
+{% endblock %}
+

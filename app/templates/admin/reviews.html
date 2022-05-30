@@ -4,14 +4,19 @@
 
 <div class="page spaced">
 	<p>Showing last 100 entries</p>
-	<ul>
+	<ul class="simple-list">
 		{% for review in reviews %}
-		<li style="margin: .5em 0">
+		<li>
 			<span data-date-fmt="relative">{{ review.created_at }}</span>:
 			Review #{{ review.id }}
 			by {{ review.author }}
 			on <a href="/games/{{ review.game.slug }}">{{ review.game }}</a>
 			<div>{{ review.comment }}</div>
+			<div>
+				<i class="material-icons">delete</i>
+				<a style="color:gold;" href="/games/{{ review.game.slug }}/reviews/{{ review.id }}/delete">[comment]</a>
+				<a style="color:gold;" href="/games/{{ review.game.slug }}/delete">[game]</a>
+			</div>
 		</li>
 		{% endfor %}
 	</ul>
