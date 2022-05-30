@@ -15,12 +15,12 @@
 		and field.name != 'comment'
 		%}
 			<div class="form-input">
+				{{ field }}
 				<label for="{{ field.id }}">
 					<div>{{ field.label.text }}</div>
 					<i class="material-icons icon">{{ field.render_kw['data-icon'] }}</i>
+					<p class="description">{{ field.description }}</p>
 				</label>
-				<p class="description">{{ field.description }}</p>
-				{{ field }}
 				{% for error in field.errors %}
 				<span style="color: red;">[{{ error }}]</span>
 				{% endfor %}

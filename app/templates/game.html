@@ -57,6 +57,10 @@
 	<p>Is IGDB slug: {{ entry.is_slug_from_igdb }}</p>
 	<p>Score: {{ entry.score }}</p>
 	<p>
+		Created: <span data-date-fmt="relative">{{ entry.created_at }}</span>
+		| Updated: <span data-date-fmt="relative">{{ entry.updated_at }}</span>
+	</p>
+	<p>
 		<a class="button admin" href="/games/{{ entry.slug }}/delete">Delete</a>
 	</p>
 </div>

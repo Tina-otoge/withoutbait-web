@@ -6,6 +6,8 @@
 #review-form .tags {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: baseline;
 }
 
 #review-form .tags .form-input {
@@ -19,4 +21,20 @@
 
 #review-form .tags .icon {
 	font-size: 50px;
+}
+
+#review-form .tags label {
+	padding: 1em;
+	box-shadow: 0 0 2px rgba(0, 0, 0, .5);
+	background: rgba(50, 50, 80, .5);
+	cursor: pointer;
+	border: 2px solid transparent;
+}
+
+#review-form .tags input:checked + label {
+	border-color: lightgreen;
+}
+
+#review-form .tags input {
+	display: none;
 }
