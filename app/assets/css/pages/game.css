@@ -30,7 +30,7 @@
 #game-entry .art {
 	height: 400px;
 	width: 280px;
-	object-fit: fill;
+	object-fit: contain;
 	border-radius: 10px;
 	margin-right: 1em;
 }
