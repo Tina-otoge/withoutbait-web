@@ -1,3 +1,4 @@
+from datetime import datetime
 import sqlalchemy as sa
 from sqlalchemy import orm
 
@@ -49,3 +50,4 @@ class Game(db.Base, db.IdMixin, db.SlugMixin, db.TimedMixin):
             self.tags.append(tag)
             if tag.score != None:
                 self.score += tag.score
+        self.updated_at = datetime.now()
