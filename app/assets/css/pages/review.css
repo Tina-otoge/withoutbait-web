@@ -11,10 +11,10 @@
 }
 
 #review-form .tags .form-input {
-	max-width: 200px;
+	max-width: 240px;
 	display: flex;
 	flex-direction: column;
-	margin: 1em .6em;
+	margin: .6em;
 	justify-content: center;
 	text-align: center;
 	align-self: stretch;
