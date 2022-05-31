@@ -61,16 +61,6 @@
 		</div>
 	{% endfor %}
 	</div>
-	<div class="pager">
-		{% set page = request.args.get('p', 1)|int or 1 %}
-		{% set platform = request.args.get('platform', '') %}
-		<div>Page {{ page }}</div>
-		<div>
-			{% if page > 1 %}
-			<a href="?p={{ page - 1 }}&platform={{ platform }}">Prev</a> -
-			{% endif %}
-			<a href="?p={{ page + 1 }}&platform={{ platform }}">Next</a>
-		</div>
 </div>
 
 {% endblock %}
