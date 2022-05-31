@@ -14,9 +14,10 @@
 	max-width: 200px;
 	display: flex;
 	flex-direction: column;
-	margin: 2em 1em;
+	margin: 1em .6em;
 	justify-content: center;
 	text-align: center;
+	align-self: stretch;
 }
 
 #review-form .tags .icon {
@@ -29,6 +30,7 @@
 	background: rgba(50, 50, 80, .5);
 	cursor: pointer;
 	border: 2px solid transparent;
+	height: 100%;
 }
 
 #review-form .tags input:checked + label {
