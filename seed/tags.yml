@@ -7,6 +7,36 @@ Expansions:
   points: -10
   icon: "add_circle_outline"
 
+Premium Currency:
+  description: "The game uses a premium currency instead of showing the price of an item directly to create confusion on the real value of the item"
+  points: -30
+  icon: "currency_exchange"
+
+Unfair packaging:
+  description: "Store doesn’t allow to buy specific amounts of currency so you are forced to buy two smaller packs or one bigger but you always end paying more (ex: you want an item that costs 100 gems but the store only allows to buy packs of 110, packs of 60 or packs of 30)"
+  points: -30
+  icon: "card_giftcard"
+  
+Rotating Store:
+  description: "Item store constantly rotating to create a sense of urgency and fear of missing out and force you to buy an item "
+  points: -20
+  icon: "shutter_speed"
+
+MMO redemer:
+  description: "More than 90% of the game requires a conection to be used"
+  points: 20
+  icon: "dns"
+
+Mods allowed:
+  description: "Modding (user created modifications) is allowed in the game and therefore you can get more content without paying"
+  points: 10
+  icon: "build"
+  
+Official modding tools:
+  description: "The game developers give offical modding tools"
+  points: 10
+  icon: "build_circle"
+
 Pay-to-win:
   description: "Paying can give you an advantage over other players"
   points: -30
